@@ -1,8 +1,12 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.5)
+
+# === set the name of your project here ===
+set(ProjectName Hello_World)
+# =========================================
 
 include(pico_sdk_import.cmake)
 
-project(my_project)
+project(${ProjectName})
 
 pico_sdk_init()
 
@@ -14,13 +18,13 @@ add_compile_options(
 	-Wextra    			# optional
 )
 
-add_executable(my_project    
+add_executable(${ProjectName}    
     main.c
 )
 
-# pico_enable_stdio_usb(my_project 1)
-pico_enable_stdio_uart(my_project 1)
+pico_enable_stdio_usb(${ProjectName} 0)
+pico_enable_stdio_uart(${ProjectName} 1)
 
-pico_add_extra_outputs(my_project)
+pico_add_extra_outputs(${ProjectName})
 
-target_link_libraries(my_project pico_stdlib)
+target_link_libraries(${ProjectName} pico_stdlib)
